@@ -27,16 +27,11 @@
 #Estimated time to completion 3 days - 2 weeks Depending on how fast you pick up
 
 # Name of said company
-file_object = open("companyname.txt","w")
 def get_company_name():
     global company_name
-    company_name = input('Hello user, please list a company you have worked for:')
-get_company_name()
-file_object.write(f'Companies you have worked for: {company_name}\n')
-file_object.close()
+    company_name = input('Hello user, please list a company you had worked for:')
 
 # Date started working for said company
-file_object = open("companyname.txt","a")
 def get_start_date():
     import datetime
     global total_start_date
@@ -45,13 +40,8 @@ def get_start_date():
     start_date_day = input(f'Next, please input the DAY you started working for {company_name} in the following format' + '(D)')
     users_input_start_date = datetime.date(int(start_date_year),int(start_date_month),int(start_date_day))
     total_start_date = (users_input_start_date)
-get_start_date()
-file_object.write(f'Date you started working for {company_name}: {total_start_date}\n')
-file_object.close()
-
 
 # Date ended working for said company
-file_object = open("companyname.txt","a")
 def get_end_date():
     import datetime
     global total_end_date
@@ -61,16 +51,19 @@ def get_end_date():
     users_input_end_date = datetime.date(int(end_date_year),int(end_date_month),int(end_date_day))
     total_end_date = (users_input_end_date)
 
-get_end_date()
-file_object.write(f'Date you stopped working for {company_name}: {total_end_date}\n')
-file_object.write(f'Number of days you worked for {company_name}: {(total_end_date - total_start_date).days}\n')
-file_object.close()
-while True:
 file_object = open("companyname.txt","w")
-    add_another_company = input('Would you like to add another company? Type yes or no:')
+while True:
     get_company_name()
-    if company_name == 'no':
+    file_object.write(f'Company you had worked for: {company_name}\n')
+    get_start_date()
+    file_object.write(f'Date you started working for {company_name}: {total_start_date}\n')
+    get_end_date()
+    file_object.write(f'Date you stopped working for {company_name}: {total_end_date}\n')
+    file_object.write(f'Number of days you worked for {company_name}: {(total_end_date - total_start_date).days}\n')
+    add_another_company = input('Would you like to add another company? Type yes or no:')
+    if add_another_company == 'no':
         break
+file_object.close()
 
 
 
